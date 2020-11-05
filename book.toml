@@ -1,0 +1,6 @@
+[book]
+authors = ["Kazuaki Ishiguro"]
+language = "en"
+multilingual = false
+src = "src"
+title = "C.R.E.A.M docs"
