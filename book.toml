@@ -4,3 +4,6 @@ language = "en"
 multilingual = false
 src = "src"
 title = "C.R.E.A.M docs"
+
+[output.html]
+git-repository-url = "https://github.com/zkcream/docs"
