@@ -20,5 +20,5 @@ Let `𝘏1` is Pedersen hash function which is imported frbbom `circomlib` libra
 | Pesudocode name | zk-SNARK input type | Description                        |
 | ----            | ----                | ----                               |
 | `commitment`    | Public              | A value `𝐶` such that `𝐶 = 𝘏1(𝑘∥𝑟)`. | 
-| `nullifierHash` | Public              | A value `ℎ` output of `ℎ = 𝘏1(𝑘)`. | 
+| `nullifierHash` | Public              | A value `ℎ` output of `ℎ = 𝘏1(𝑘)`. |
 
