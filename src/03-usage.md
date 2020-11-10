@@ -26,3 +26,11 @@ cream:
 | `denomination` | The total amount of money needed for the `deposit()` function call.                                                          |
 | `recipients`   | An array of ethereum addresses to be candidates for the ballot.                                                              |
 | `zeroValue`    | Zero value which defined at `Cream.sol`. Its pre-calculated as `uint256(keccak256(abi.encodePacked('cream'))) % FIELD_SIZE`. |
+
+### Deposit
+
+The implementation of deposits is described in detail in [#Deposit](./05-contract_api.html#deposit) section of the Contract API.
+
+### Withdraw
+
+The implementation of withdraw is described in detail in [#Withdraw](./05-contract_api.html#withdraw) section of the Contract API.
