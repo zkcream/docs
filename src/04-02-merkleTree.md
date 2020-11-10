@@ -14,4 +14,4 @@ Let `𝑂(𝜏, 𝜄)` be the path of the merkle tree `𝜏` represented by the 
 
 | Pesudocode name | zk-SNARK input type | Description |
 | ----            | ----                | ----        |
-| `root`          | Public              | A value of current merkle tree root hash `𝑅`.|
+| `root`          | Public              | A value of current merkle root `𝑅`.|
