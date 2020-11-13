@@ -1,5 +1,7 @@
 # CREAM docs
 
+![github pages](https://github.com/zkcream/docs/workflows/github%20pages/badge.svg)
+
 ## Setup
 
 This documentation is written in [mdbook](https://github.com/rust-lang/mdBook) format.
