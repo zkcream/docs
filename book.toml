@@ -10,3 +10,4 @@ build-dir = "docs"
 
 [output.html]
 git-repository-url = "https://github.com/zkcream/docs"
+site-url = "https://zkcre.am/docs"
