@@ -170,7 +170,7 @@
                         <h1><a class="header" href="#libcream" id="libcream">libcream</a></h1>
 <h2><a class="header" href="#types" id="types">Types</a></h2>
 <p><strong><code>SnarkBigint</code></strong></p>
-<p>A big integer type compatible with the <code>cream-merkle-tree</code> <a href="https://github.com/kazuakiishiguro/cream-merkle-tree">library</a>. This type was ported from <code>snarkjs =&lt; 0.1.20</code> library.</p>
+<p>A big integer type compatible with the <code>cream-merkle-tree</code> <a href="https://github.com/kazuakiishiguro/cream-merkle-tree">library</a>. This type is ported from <code>snarkjs =&lt; 0.1.20</code> library.</p>
 <h2><a class="header" href="#interfaces" id="interfaces">Interfaces</a></h2>
 <p><strong><code>PedersenHash</code></strong></p>
 <p>Encupslates an outputs of <code>pedersenHash()</code> function.</p>
@@ -202,6 +202,19 @@
 	nullifier: SnarkBigInt,
 	secret: SnarkBigInt
 ): Deposit =&gt; {}
+</code></pre>
+<p><strong><code>createMessage</code></strong>
+Function to return a value of type along the <code>Message</code> interface and <code>PubKey</code>.</p>
+<pre><code class="language-typescript">const createMessage(
+	userStateIndex: number,
+	userKeypair: Keypair,
+	newUserKeypair: Keypair | null,
+	coordinatorPubKey: PubKey,
+	voteOptionIndex: number | null,
+	voiceCredits: BigNumber | null,
+	nonce: number,
+	_salt?: BigInt
+): [Message, PubKey] =&gt; {}
 </code></pre>
 <p><strong><code>generateDeposit</code></strong></p>
 <p>Generates a type along the Deposit interface from a given string.</p>
