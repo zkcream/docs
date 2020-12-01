@@ -4,7 +4,7 @@
 
 **`SnarkBigint`**
 
-A big integer type compatible with the `cream-merkle-tree` [library](https://github.com/kazuakiishiguro/cream-merkle-tree). This type was ported from `snarkjs =< 0.1.20` library.
+A big integer type compatible with the `cream-merkle-tree` [library](https://github.com/kazuakiishiguro/cream-merkle-tree). This type is ported from `snarkjs =< 0.1.20` library.
 
 ## Interfaces
 
@@ -54,6 +54,22 @@ const createDeposit (
 	nullifier: SnarkBigInt,
 	secret: SnarkBigInt
 ): Deposit => {}
+```
+
+**`createMessage`**
+Function to return a value of type along the `Message` interface and `PubKey`.
+
+```typescript
+const createMessage(
+	userStateIndex: number,
+	userKeypair: Keypair,
+	newUserKeypair: Keypair | null,
+	coordinatorPubKey: PubKey,
+	voteOptionIndex: number | null,
+	voiceCredits: BigNumber | null,
+	nonce: number,
+	_salt?: BigInt
+): [Message, PubKey] => {}
 ```
 
 **`generateDeposit`**
