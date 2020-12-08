@@ -168,9 +168,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#contract-api" id="contract-api">Contract API</a></h1>
-<p>You can always get the latest version of the Cream contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
+<p>You can always get the latest version of the C.R.E.A.M. contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
 <h2><a class="header" href="#constructor" id="constructor">Constructor</a></h2>
-<p>When you deploy a contract, you need to pass the following elements as arguments.</p>
+<p>When you deploy the contract, you need to pass the following elements as arguments.</p>
 <pre><code class="language-solidity">constructor(
     IVerifier _verifier,
     SignUpToken _signUpToken,
@@ -181,14 +181,14 @@
 </code></pre>
 <h3><a class="header" href="#argument-details" id="argument-details">Argument details</a></h3>
 <table><thead><tr><th>Argument</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>_verifier</code></td><td><code>Verifier</code> constract address. This contract can update later with <code>updateVerifer(address)</code> method.</td></tr>
+<tr><td><code>_verifier</code></td><td><code>Verifier</code> contract address. This contract can be updated later with the <code>updateVerifer(address)</code> method.</td></tr>
 <tr><td><code>_signUpToken</code></td><td><code>SignUpToken</code> contract address of the token to be used for voting.</td></tr>
-<tr><td><code>_denomination</code></td><td>The total amount of money needed for the <code>deposit()</code> function call.</td></tr>
-<tr><td><code>_merkleTreeHeight</code></td><td>Specify the size of the markle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
-<tr><td><code>_recipients</code></td><td>An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method <code>setRecipients()</code> on the occasion of the constructor call, and they shall not be able to be updated after the contract is deployed.</td></tr>
+<tr><td><code>_denomination</code></td><td>The total amount of tokens needed for the <code>deposit()</code> function call.</td></tr>
+<tr><td><code>_merkleTreeHeight</code></td><td>Specify the size of the merkle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
+<tr><td><code>_recipients</code></td><td>An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method <code>setRecipients()</code> when the contract is deployed, and cannot be changed after.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#deposit" id="deposit">Deposit</a></h2>
-<p>The call to the deposit function is a very simple process of passing locally generated value, in this case <code>_commitment</code>, but you should not forget to send the value of <code>_denomination</code> and have a token from the <code>_signUpToken</code> token contract.</p>
+<p>The call to the deposit function is a very simple process of passing a locally generated value, in this case <code>_commitment</code>, but you should not forget to send the value of <code>_denomination</code> and have a token from the <code>_signUpToken</code> token contract.</p>
 <pre><code class="language-solidity">function deposit (
     bytes32 _commitment
 )
@@ -224,10 +224,10 @@ truffleAssert.eventEmitted(tx, 'Deposit')
 <table><thead><tr><th>Argument</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>_proof</code></td><td>A zk-SNARK proof.</td></tr>
 <tr><td><code>_root</code></td><td>The value of the root hash of the Merkle Tree.</td></tr>
-<tr><td><code>_nullifierHash</code></td><td>The value of <code>X</code> of <code>BabyJubJub</code> from the return value of <code>nullifier</code> = <code>𝑘</code> passed to <code>pedersenHash()</code>.</td></tr>
-<tr><td><code>_recipient</code></td><td>Candidate's Ethereu address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted.</td></tr>
+<tr><td><code>_nullifierHash</code></td><td>The value of <code>X</code> of <code>BabyJubJub</code> (see <a href="https://eips.ethereum.org/EIPS/eip-2494">here</a>) from the return value of <code>nullifier</code> = <code>𝑘</code> passed to <code>pedersenHash()</code>.</td></tr>
+<tr><td><code>_recipient</code></td><td>Candidate's Ethereum address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted.</td></tr>
 <tr><td><code>_relayer</code></td><td>Relayer address.</td></tr>
-<tr><td><code>_fee</code></td><td>Fees for the use of relayers.</td></tr>
+<tr><td><code>_fee</code></td><td>Relayer fee.</td></tr>
 </tbody></table>
 <h3><a class="header" href="#usage-1" id="usage-1">Usage</a></h3>
 <pre><code class="language-javascript">// Deposit

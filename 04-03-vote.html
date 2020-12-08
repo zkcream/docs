@@ -169,19 +169,19 @@
                     <main>
                         <h1><a class="header" href="#vote" id="vote">Vote</a></h1>
 <h2><a class="header" href="#inputs" id="inputs">Inputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>root</code></td><td>Public</td><td>A merkle root of the tree.</td></tr>
 <tr><td><code>nullifierHash</code></td><td>Public</td><td>A value ℎ output of <code>ℎ = 𝘏1(𝑘)</code>.</td></tr>
 <tr><td><code>nullifier</code></td><td>Private</td><td>A private known <code>𝑘</code> value at the time of deposit.</td></tr>
-<tr><td><code>secret</code></td><td>Private</td><td>A private know <code>𝑟</code> value at the time of deposit.</td></tr>
-<tr><td><code>path_elements[levels]</code></td><td>Private</td><td>A private path elements to prove the existance of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
+<tr><td><code>secret</code></td><td>Private</td><td>A private known <code>𝑟</code> value at the time of deposit.</td></tr>
+<tr><td><code>path_elements[levels]</code></td><td>Private</td><td>Private path elements to prove the existence of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
 <tr><td><code>path_index[levels]</code></td><td>Private</td><td>A private path index <code>𝜄</code> from merkle tree at the time of deposit.</td></tr>
 <tr><td><code>recipient</code></td><td>Public</td><td>A recipient ethereum address.</td></tr>
 <tr><td><code>relayer</code></td><td>Public</td><td>A relayer ethereum address. (optional)</td></tr>
 <tr><td><code>fee</code></td><td>Public</td><td>A relayer fee. (optional)</td></tr>
 </tbody></table>
 <h2><a class="header" href="#outputs" id="outputs">Outputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>new_root</code></td><td>Public</td><td>An updated merkle root of the tree.</td></tr>
 </tbody></table>
 

@@ -170,18 +170,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#about" id="about">About</a></h1>
-<p><strong><a href="https://github.com/couger-inc/cream">C.R.E.A.M</a></strong> stands for <strong>Confidential Reliable Ethereum Anonymous Mixer</strong>. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and situations that require voting.</p>
-<p>The protocol consists of a smart contract and a zero-knowledge component. C.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.</p>
-<h2><a class="header" href="#system-designning" id="system-designning">System designning</a></h2>
-<p>C.R.E.A.M aims to be simple in design, with the basic functions being &quot;deposit&quot; which means reception and &quot;drawer&quot; which means voting. </p>
-<p>To ensure the secrecy of the vote, the voter generates a random value on their device when they make a deposit. Anyone who has a knowledge of this random value can withdraw it, making the source of the token (i.e. the address where the deposit was made) secret.</p>
-<h3><a class="header" href="#basic-feature" id="basic-feature">Basic feature</a></h3>
+<p><strong><a href="https://github.com/couger-inc/cream">C.R.E.A.M</a></strong> stands for <strong>Confidential Reliable Ethereum Anonymous Mixer</strong>. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and other situations that require voting.</p>
+<p>The protocol consists of a smart contract and a zero-knowledge component. The C.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.</p>
+<h2><a class="header" href="#system-design" id="system-design">System design</a></h2>
+<p>C.R.E.A.M aims to be simple in design, with the basic functions being &quot;deposit&quot; which means reception of the token used in the vote, and &quot;drawer&quot; which means casting the vote. </p>
+<p>To ensure the secrecy of the vote, the voter generates a random value on their device when they make a deposit. Anyone who knows this random value can withdraw it, making the source of the token (i.e. the address where the deposit was made) secret.</p>
+<h3><a class="header" href="#basic-features" id="basic-features">Basic features</a></h3>
 <p>Here's what you'll need to do to set it up in a nutshell:</p>
 <ol>
-<li>Set required deposit amount.</li>
-<li>Set recipients(candidates) ethereum address.</li>
+<li>Set the required deposit amount.</li>
+<li>Set the recipients' (candidates') ethereum addresses.</li>
 </ol>
-<p>All other election-specific parameters are automatically passed to the constructor at contract deployment time. You can check the configuration in the source code <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">here</a>.</p>
+<p>All other election-specific parameters are automatically passed to the constructor at contract deployment time. You can check out the configuration in the source code <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">here</a>.</p>
 <h1><a class="header" href="#quick-start" id="quick-start">Quick start</a></h1>
 <p>This page is basically ported from <a href="https://github.com/couger-inc/cream">README.md</a>.</p>
 <p><a href="https://github.com/couger-inc/cream/actions"><img src="https://github.com/couger-inc/cream/workflows/cream%20contract%20test/badge.svg" alt="Actions Status" /></a></p>
@@ -191,7 +191,7 @@
 </ul>
 <h2><a class="header" href="#setup" id="setup">Setup</a></h2>
 <h3><a class="header" href="#config-file" id="config-file">Config file</a></h3>
-<p>Check out <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">config/test.yml</a> file how to configure settings:</p>
+<p>Check out the <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">config/test.yml</a> file for how to configure the settings:</p>
 <pre><code class="language-yml">cream:
   merkleTrees: 4
   denomination: 1000000000000000000
@@ -204,7 +204,7 @@
 </code></pre>
 <h3><a class="header" href="#circuit" id="circuit">Circuit</a></h3>
 <p>Make sure you set the same value of merkleTrees depth on both <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">config/test.yml</a> and <a href="https://github.com/couger-inc/cream/blob/master/circuits/circom/vote.circom">circuits/circom.circom</a>.</p>
-<p>After finished setting, you can run:</p>
+<p>After you finish setting the configuration, you can run:</p>
 <pre><code class="language-bash">$ npm run bootstrap &amp;&amp; \
 $ npm run build
 $ ganache-cli // or cd contracts &amp;&amp; npm run ganache
@@ -214,12 +214,12 @@ $ npm run migrate
 <pre><code class="language-bash"># after finished setting:
 $ npm run test
 </code></pre>
-<p>If you get an error after <code>npm run test</code> (probably on node version <code>&lt;=10.x</code>), such as <code>Error: Cannot find module 'worker_threads'</code>, please run following command.</p>
+<p>If you get an error after <code>npm run test</code> (probably on node version <code>&lt;=10.x</code>), such as <code>Error: Cannot find module 'worker_threads'</code>, please run the following command.</p>
 <pre><code class="language-bash">$ export NODE_OPTIONS=--experimental-worker
 </code></pre>
 <h1><a class="header" href="#usage" id="usage">Usage</a></h1>
 <h2><a class="header" href="#simple-anonymous-voting" id="simple-anonymous-voting">Simple anonymous voting</a></h2>
-<p>Let's take a simple voting as an example.</p>
+<p>Let's take a simple vote as an example.</p>
 <h3><a class="header" href="#configurations" id="configurations">Configurations</a></h3>
 <p>The following are the minimum settings needed to deploy the contract and use C.R.E.A.M.</p>
 <pre><code class="language-yaml">cream:
@@ -233,15 +233,15 @@ $ npm run test
   zeroValue: &quot;2558267815324835836571784235309882327407732303445109280607932348234378166811&quot;
 </code></pre>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>merkleTree</code></td><td>Specify the size of the markle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
-<tr><td><code>denomination</code></td><td>The total amount of money needed for the <code>deposit()</code> function call.</td></tr>
+<tr><td><code>merkleTree</code></td><td>Specify the size of the merkle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
+<tr><td><code>denomination</code></td><td>The total amount of tokens needed for the <code>deposit()</code> function call.</td></tr>
 <tr><td><code>recipients</code></td><td>An array of ethereum addresses to be candidates for the ballot.</td></tr>
-<tr><td><code>zeroValue</code></td><td>Zero value which defined at <code>Cream.sol</code>. Its pre-calculated as <code>uint256(keccak256(abi.encodePacked('cream'))) % FIELD_SIZE</code>.</td></tr>
+<tr><td><code>zeroValue</code></td><td>Zero value which defined at <code>Cream.sol</code>. It is pre-calculated as <code>uint256(keccak256(abi.encodePacked('cream'))) % FIELD_SIZE</code>.</td></tr>
 </tbody></table>
 <h3><a class="header" href="#deposit" id="deposit">Deposit</a></h3>
-<p>The implementation of deposits is described in detail in <a href="./05-contract_api.html#deposit">#Deposit</a> section of the Contract API.</p>
+<p>The implementation of deposits is described in detail in the <a href="./05-contract_api.html#deposit">#Deposit</a> section of the Contract API.</p>
 <h3><a class="header" href="#withdraw" id="withdraw">Withdraw</a></h3>
-<p>The implementation of withdraw is described in detail in <a href="./05-contract_api.html#withdraw">#Withdraw</a> section of the Contract API.</p>
+<p>The implementation of withdrawal is described in detail in the <a href="./05-contract_api.html#withdraw">#Withdraw</a> section of the Contract API.</p>
 <h1><a class="header" href="#circuits" id="circuits">Circuits</a></h1>
 <p>C.R.E.A.M. uses four different circuits, and the detailed APIs of each circuit are described in the links below:</p>
 <ol>
@@ -251,16 +251,16 @@ $ npm run test
 <li><a href="04-04-batchVote.html">BatchVote</a></li>
 </ol>
 <h1><a class="header" href="#hasher-circuit" id="hasher-circuit">Hasher circuit</a></h1>
-<p>Hasher circuit computes the Pedersen hash value of given inputs.</p>
+<p>The hasher circuit computes the Pedersen hash value of the given inputs.</p>
 <h2><a class="header" href="#inputs" id="inputs">Inputs</a></h2>
 <p>Both <code>nullifier</code> and <code>secret</code> values are generated when a user deposits a token into a voting contract.</p>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>nullifier</code></td><td>Public</td><td>A random <code>𝑘</code> value such that <code>𝑘 ∈ 𝔹248</code>.</td></tr>
-<tr><td><code>secret</code></td><td>Public</td><td>A random <code>𝑟</code> value generated <code>𝑟 ∈ 𝔹248</code>.</td></tr>
+<tr><td><code>secret</code></td><td>Public</td><td>A random <code>𝑟</code> value generated such that <code>𝑟 ∈ 𝔹248</code>.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#outpus" id="outpus">Outpus</a></h2>
-<p>The outputs of Hasher circuit are computed outputs of hash function <code>𝘏1</code> such that <code>𝘏1:𝔹 → ℤp</code>. </p>
-<p>Let <code>𝘏1</code> is Pedersen hash function which is imported frbbom <code>circomlib</code> library <a href="https://github.com/iden3/circomlib/blob/master/circuits/pedersen.circom">here</a>.</p>
+<h2><a class="header" href="#outputs" id="outputs">Outputs</a></h2>
+<p>The outputs of the Hasher circuit are computed outputs of hash function <code>𝘏1</code> such that <code>𝘏1:𝔹 → ℤp</code>. </p>
+<p>Let <code>𝘏1</code> be the Pedersen hash function which is imported from <code>circomlib</code> library <a href="https://github.com/iden3/circomlib/blob/master/circuits/pedersen.circom">here</a>.</p>
 <table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>commitment</code></td><td>Public</td><td>A value <code>𝐶</code> such that <code>𝐶 = 𝘏1(𝑘∥𝑟)</code>.</td></tr>
 <tr><td><code>nullifierHash</code></td><td>Public</td><td>A value <code>ℎ</code> output of <code>ℎ = 𝘏1(𝑘)</code>.</td></tr>
@@ -268,53 +268,53 @@ $ npm run test
 <h1><a class="header" href="#merkle-tree-circuit" id="merkle-tree-circuit">Merkle Tree circuit</a></h1>
 <h2><a class="header" href="#inputs-1" id="inputs-1">Inputs</a></h2>
 <p>Let <code>𝑂(𝜏, 𝜄)</code> be the path of the merkle tree <code>𝜏</code> represented by the root hash <code>𝑅</code> with the index <code>𝜄</code>.</p>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>leaf</code></td><td>Public</td><td>An output of Pedersen hash function <code>𝐶</code> such that <code>𝐶 = 𝘏1(𝑘∥𝑟)</code></td></tr>
-<tr><td><code>path_elements[levels]</code></td><td>Public</td><td>A path elements to prove the existance of the current leaf represented by<code>𝑂(𝜏, 𝜄)</code>.</td></tr>
-<tr><td><code>path_index[levels]</code></td><td>Public</td><td>A path index <code>𝜄</code> from merkle tree.</td></tr>
+<tr><td><code>path_elements[levels]</code></td><td>Public</td><td>Path elements to prove the existence of the current leaf represented by<code>𝑂(𝜏, 𝜄)</code>.</td></tr>
+<tr><td><code>path_index[levels]</code></td><td>Public</td><td>A path index <code>𝜄</code> from the merkle tree.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#outputs" id="outputs">Outputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<h2><a class="header" href="#outputs-1" id="outputs-1">Outputs</a></h2>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>root</code></td><td>Public</td><td>A value of current merkle root <code>𝑅</code>.</td></tr>
 </tbody></table>
 <h1><a class="header" href="#vote" id="vote">Vote</a></h1>
 <h2><a class="header" href="#inputs-2" id="inputs-2">Inputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>root</code></td><td>Public</td><td>A merkle root of the tree.</td></tr>
 <tr><td><code>nullifierHash</code></td><td>Public</td><td>A value ℎ output of <code>ℎ = 𝘏1(𝑘)</code>.</td></tr>
 <tr><td><code>nullifier</code></td><td>Private</td><td>A private known <code>𝑘</code> value at the time of deposit.</td></tr>
-<tr><td><code>secret</code></td><td>Private</td><td>A private know <code>𝑟</code> value at the time of deposit.</td></tr>
-<tr><td><code>path_elements[levels]</code></td><td>Private</td><td>A private path elements to prove the existance of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
+<tr><td><code>secret</code></td><td>Private</td><td>A private known <code>𝑟</code> value at the time of deposit.</td></tr>
+<tr><td><code>path_elements[levels]</code></td><td>Private</td><td>Private path elements to prove the existence of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
 <tr><td><code>path_index[levels]</code></td><td>Private</td><td>A private path index <code>𝜄</code> from merkle tree at the time of deposit.</td></tr>
 <tr><td><code>recipient</code></td><td>Public</td><td>A recipient ethereum address.</td></tr>
 <tr><td><code>relayer</code></td><td>Public</td><td>A relayer ethereum address. (optional)</td></tr>
 <tr><td><code>fee</code></td><td>Public</td><td>A relayer fee. (optional)</td></tr>
 </tbody></table>
-<h2><a class="header" href="#outputs-1" id="outputs-1">Outputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<h2><a class="header" href="#outputs-2" id="outputs-2">Outputs</a></h2>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>new_root</code></td><td>Public</td><td>An updated merkle root of the tree.</td></tr>
 </tbody></table>
 <h1><a class="header" href="#batchvote" id="batchvote">BatchVote</a></h1>
 <h2><a class="header" href="#inputs-3" id="inputs-3">Inputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>root[batch_size]</code></td><td>Public</td><td>A merkle root of the tree.</td></tr>
 <tr><td><code>nullifierHash[batch_size]</code></td><td>Public</td><td>A value ℎ output of <code>ℎ =𝘏1(𝑘)</code></td></tr>
 <tr><td><code>nullifier[batch_size]</code></td><td>Private</td><td>A private known <code>𝑘</code> value at the time of deposit.</td></tr>
-<tr><td><code>secret[batch_size]</code></td><td>Private</td><td>A private know <code>𝑟</code> value at the time of deposit.</td></tr>
-<tr><td><code>path_elements[batch_size][levels]</code></td><td>Private</td><td>A private path elements to prove the existance of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
+<tr><td><code>secret[batch_size]</code></td><td>Private</td><td>A private known <code>𝑟</code> value at the time of deposit.</td></tr>
+<tr><td><code>path_elements[batch_size][levels]</code></td><td>Private</td><td>Private path elements to prove the existance of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
 <tr><td><code>path_index[batch_size][levels]</code></td><td>Private</td><td>A private path index <code>𝜄</code> from merkle tree at the time of deposit.</td></tr>
 <tr><td><code>recipient[batch_size]</code></td><td>Public</td><td>A recipient ethereum address.</td></tr>
 <tr><td><code>relayer[batch_size]</code></td><td>Public</td><td>A relayer ethereum address. (optional)</td></tr>
 <tr><td><code>fee[batch_size]</code></td><td>Public</td><td>A relayer fee. (optional)</td></tr>
 </tbody></table>
-<h2><a class="header" href="#outputs-2" id="outputs-2">Outputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<h2><a class="header" href="#outputs-3" id="outputs-3">Outputs</a></h2>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>new_root</code></td><td>Public</td><td>An updated merkle root of the tree after the batch transaction.</td></tr>
 </tbody></table>
 <h1><a class="header" href="#contract-api" id="contract-api">Contract API</a></h1>
-<p>You can always get the latest version of the Cream contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
+<p>You can always get the latest version of the C.R.E.A.M. contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
 <h2><a class="header" href="#constructor" id="constructor">Constructor</a></h2>
-<p>When you deploy a contract, you need to pass the following elements as arguments.</p>
+<p>When you deploy the contract, you need to pass the following elements as arguments.</p>
 <pre><code class="language-solidity">constructor(
     IVerifier _verifier,
     SignUpToken _signUpToken,
@@ -325,14 +325,14 @@ $ npm run test
 </code></pre>
 <h3><a class="header" href="#argument-details" id="argument-details">Argument details</a></h3>
 <table><thead><tr><th>Argument</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>_verifier</code></td><td><code>Verifier</code> constract address. This contract can update later with <code>updateVerifer(address)</code> method.</td></tr>
+<tr><td><code>_verifier</code></td><td><code>Verifier</code> contract address. This contract can be updated later with the <code>updateVerifer(address)</code> method.</td></tr>
 <tr><td><code>_signUpToken</code></td><td><code>SignUpToken</code> contract address of the token to be used for voting.</td></tr>
-<tr><td><code>_denomination</code></td><td>The total amount of money needed for the <code>deposit()</code> function call.</td></tr>
-<tr><td><code>_merkleTreeHeight</code></td><td>Specify the size of the markle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
-<tr><td><code>_recipients</code></td><td>An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method <code>setRecipients()</code> on the occasion of the constructor call, and they shall not be able to be updated after the contract is deployed.</td></tr>
+<tr><td><code>_denomination</code></td><td>The total amount of tokens needed for the <code>deposit()</code> function call.</td></tr>
+<tr><td><code>_merkleTreeHeight</code></td><td>Specify the size of the merkle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
+<tr><td><code>_recipients</code></td><td>An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method <code>setRecipients()</code> when the contract is deployed, and cannot be changed after.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#deposit-1" id="deposit-1">Deposit</a></h2>
-<p>The call to the deposit function is a very simple process of passing locally generated value, in this case <code>_commitment</code>, but you should not forget to send the value of <code>_denomination</code> and have a token from the <code>_signUpToken</code> token contract.</p>
+<p>The call to the deposit function is a very simple process of passing a locally generated value, in this case <code>_commitment</code>, but you should not forget to send the value of <code>_denomination</code> and have a token from the <code>_signUpToken</code> token contract.</p>
 <pre><code class="language-solidity">function deposit (
     bytes32 _commitment
 )
@@ -368,10 +368,10 @@ truffleAssert.eventEmitted(tx, 'Deposit')
 <table><thead><tr><th>Argument</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>_proof</code></td><td>A zk-SNARK proof.</td></tr>
 <tr><td><code>_root</code></td><td>The value of the root hash of the Merkle Tree.</td></tr>
-<tr><td><code>_nullifierHash</code></td><td>The value of <code>X</code> of <code>BabyJubJub</code> from the return value of <code>nullifier</code> = <code>𝑘</code> passed to <code>pedersenHash()</code>.</td></tr>
-<tr><td><code>_recipient</code></td><td>Candidate's Ethereu address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted.</td></tr>
+<tr><td><code>_nullifierHash</code></td><td>The value of <code>X</code> of <code>BabyJubJub</code> (see <a href="https://eips.ethereum.org/EIPS/eip-2494">here</a>) from the return value of <code>nullifier</code> = <code>𝑘</code> passed to <code>pedersenHash()</code>.</td></tr>
+<tr><td><code>_recipient</code></td><td>Candidate's Ethereum address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted.</td></tr>
 <tr><td><code>_relayer</code></td><td>Relayer address.</td></tr>
-<tr><td><code>_fee</code></td><td>Fees for the use of relayers.</td></tr>
+<tr><td><code>_fee</code></td><td>Relayer fee.</td></tr>
 </tbody></table>
 <h3><a class="header" href="#usage-2" id="usage-2">Usage</a></h3>
 <pre><code class="language-javascript">// Deposit
@@ -429,7 +429,7 @@ truffleAssert.eventEmitted(tx, 'Withdrawal')
 <p>A big integer type compatible with the <code>cream-merkle-tree</code> <a href="https://github.com/kazuakiishiguro/cream-merkle-tree">library</a>. This type is ported from <code>snarkjs =&lt; 0.1.20</code> library.</p>
 <h2><a class="header" href="#interfaces" id="interfaces">Interfaces</a></h2>
 <p><strong><code>PedersenHash</code></strong></p>
-<p>Encupslates an outputs of <code>pedersenHash()</code> function.</p>
+<p>Encapsulates the outputs of the <code>pedersenHash()</code> function.</p>
 <pre><code class="language-typescript">interface PedersenHash {
     babyJubX: SnarkBigInt,
     babyJubY: SnarkBigInt
@@ -447,20 +447,20 @@ truffleAssert.eventEmitted(tx, 'Withdrawal')
 </code></pre>
 <h2><a class="header" href="#functions" id="functions">Functions</a></h2>
 <p><strong><code>pedersenHash</code></strong></p>
-<p>Function to hash the given value and return a value of type along the <code>PedersenHash</code> interface.</p>
+<p>Function to hash the given value and return a value of the type of the <code>PedersenHash</code> interface.</p>
 <pre><code class="language-typescript">const pedersenHash (
 	value: SnarkBigInt
 ): PedersenHash =&gt; {}
 </code></pre>
 <p><strong><code>createDeposit</code></strong></p>
-<p>Function to return a value of type along the <code>Deposit</code> interface from given 2 values, nullifier and secret.</p>
+<p>Function to return a value of the type of the <code>Deposit</code> interface given 2 values, nullifier and secret.</p>
 <pre><code class="language-typescript">const createDeposit (
 	nullifier: SnarkBigInt,
 	secret: SnarkBigInt
 ): Deposit =&gt; {}
 </code></pre>
 <p><strong><code>createMessage</code></strong>
-Function to return a value of type along the <code>Message</code> interface and <code>PubKey</code>.</p>
+Function to return a value of the type of the <code>Message</code> interface and <code>PubKey</code>.</p>
 <pre><code class="language-typescript">const createMessage(
 	userStateIndex: number,
 	userKeypair: Keypair,
@@ -473,7 +473,7 @@ Function to return a value of type along the <code>Message</code> interface and 
 ): [Message, PubKey] =&gt; {}
 </code></pre>
 <p><strong><code>generateDeposit</code></strong></p>
-<p>Generates a type along the Deposit interface from a given string.</p>
+<p>Generates a type of the Deposit interface from a given string.</p>
 <pre><code class="language-typescript">const generateDeposit (
 	note: string
 ): Deposit =&gt; {}

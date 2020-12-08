@@ -170,13 +170,13 @@
                         <h1><a class="header" href="#merkle-tree-circuit" id="merkle-tree-circuit">Merkle Tree circuit</a></h1>
 <h2><a class="header" href="#inputs" id="inputs">Inputs</a></h2>
 <p>Let <code>𝑂(𝜏, 𝜄)</code> be the path of the merkle tree <code>𝜏</code> represented by the root hash <code>𝑅</code> with the index <code>𝜄</code>.</p>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>leaf</code></td><td>Public</td><td>An output of Pedersen hash function <code>𝐶</code> such that <code>𝐶 = 𝘏1(𝑘∥𝑟)</code></td></tr>
-<tr><td><code>path_elements[levels]</code></td><td>Public</td><td>A path elements to prove the existance of the current leaf represented by<code>𝑂(𝜏, 𝜄)</code>.</td></tr>
-<tr><td><code>path_index[levels]</code></td><td>Public</td><td>A path index <code>𝜄</code> from merkle tree.</td></tr>
+<tr><td><code>path_elements[levels]</code></td><td>Public</td><td>Path elements to prove the existence of the current leaf represented by<code>𝑂(𝜏, 𝜄)</code>.</td></tr>
+<tr><td><code>path_index[levels]</code></td><td>Public</td><td>A path index <code>𝜄</code> from the merkle tree.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#outputs" id="outputs">Outputs</a></h2>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>root</code></td><td>Public</td><td>A value of current merkle root <code>𝑅</code>.</td></tr>
 </tbody></table>
 

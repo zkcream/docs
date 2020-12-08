@@ -169,7 +169,7 @@
                     <main>
                         <h1><a class="header" href="#usage" id="usage">Usage</a></h1>
 <h2><a class="header" href="#simple-anonymous-voting" id="simple-anonymous-voting">Simple anonymous voting</a></h2>
-<p>Let's take a simple voting as an example.</p>
+<p>Let's take a simple vote as an example.</p>
 <h3><a class="header" href="#configurations" id="configurations">Configurations</a></h3>
 <p>The following are the minimum settings needed to deploy the contract and use C.R.E.A.M.</p>
 <pre><code class="language-yaml">cream:
@@ -183,15 +183,15 @@
   zeroValue: &quot;2558267815324835836571784235309882327407732303445109280607932348234378166811&quot;
 </code></pre>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>merkleTree</code></td><td>Specify the size of the markle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
-<tr><td><code>denomination</code></td><td>The total amount of money needed for the <code>deposit()</code> function call.</td></tr>
+<tr><td><code>merkleTree</code></td><td>Specify the size of the merkle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
+<tr><td><code>denomination</code></td><td>The total amount of tokens needed for the <code>deposit()</code> function call.</td></tr>
 <tr><td><code>recipients</code></td><td>An array of ethereum addresses to be candidates for the ballot.</td></tr>
-<tr><td><code>zeroValue</code></td><td>Zero value which defined at <code>Cream.sol</code>. Its pre-calculated as <code>uint256(keccak256(abi.encodePacked('cream'))) % FIELD_SIZE</code>.</td></tr>
+<tr><td><code>zeroValue</code></td><td>Zero value which defined at <code>Cream.sol</code>. It is pre-calculated as <code>uint256(keccak256(abi.encodePacked('cream'))) % FIELD_SIZE</code>.</td></tr>
 </tbody></table>
 <h3><a class="header" href="#deposit" id="deposit">Deposit</a></h3>
-<p>The implementation of deposits is described in detail in <a href="./05-contract_api.html#deposit">#Deposit</a> section of the Contract API.</p>
+<p>The implementation of deposits is described in detail in the <a href="./05-contract_api.html#deposit">#Deposit</a> section of the Contract API.</p>
 <h3><a class="header" href="#withdraw" id="withdraw">Withdraw</a></h3>
-<p>The implementation of withdraw is described in detail in <a href="./05-contract_api.html#withdraw">#Withdraw</a> section of the Contract API.</p>
+<p>The implementation of withdrawal is described in detail in the <a href="./05-contract_api.html#withdraw">#Withdraw</a> section of the Contract API.</p>
 
                     </main>
 

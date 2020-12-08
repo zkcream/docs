@@ -173,7 +173,7 @@
 <p>A big integer type compatible with the <code>cream-merkle-tree</code> <a href="https://github.com/kazuakiishiguro/cream-merkle-tree">library</a>. This type is ported from <code>snarkjs =&lt; 0.1.20</code> library.</p>
 <h2><a class="header" href="#interfaces" id="interfaces">Interfaces</a></h2>
 <p><strong><code>PedersenHash</code></strong></p>
-<p>Encupslates an outputs of <code>pedersenHash()</code> function.</p>
+<p>Encapsulates the outputs of the <code>pedersenHash()</code> function.</p>
 <pre><code class="language-typescript">interface PedersenHash {
     babyJubX: SnarkBigInt,
     babyJubY: SnarkBigInt
@@ -191,20 +191,20 @@
 </code></pre>
 <h2><a class="header" href="#functions" id="functions">Functions</a></h2>
 <p><strong><code>pedersenHash</code></strong></p>
-<p>Function to hash the given value and return a value of type along the <code>PedersenHash</code> interface.</p>
+<p>Function to hash the given value and return a value of the type of the <code>PedersenHash</code> interface.</p>
 <pre><code class="language-typescript">const pedersenHash (
 	value: SnarkBigInt
 ): PedersenHash =&gt; {}
 </code></pre>
 <p><strong><code>createDeposit</code></strong></p>
-<p>Function to return a value of type along the <code>Deposit</code> interface from given 2 values, nullifier and secret.</p>
+<p>Function to return a value of the type of the <code>Deposit</code> interface given 2 values, nullifier and secret.</p>
 <pre><code class="language-typescript">const createDeposit (
 	nullifier: SnarkBigInt,
 	secret: SnarkBigInt
 ): Deposit =&gt; {}
 </code></pre>
 <p><strong><code>createMessage</code></strong>
-Function to return a value of type along the <code>Message</code> interface and <code>PubKey</code>.</p>
+Function to return a value of the type of the <code>Message</code> interface and <code>PubKey</code>.</p>
 <pre><code class="language-typescript">const createMessage(
 	userStateIndex: number,
 	userKeypair: Keypair,
@@ -217,7 +217,7 @@ Function to return a value of type along the <code>Message</code> interface and 
 ): [Message, PubKey] =&gt; {}
 </code></pre>
 <p><strong><code>generateDeposit</code></strong></p>
-<p>Generates a type along the Deposit interface from a given string.</p>
+<p>Generates a type of the Deposit interface from a given string.</p>
 <pre><code class="language-typescript">const generateDeposit (
 	note: string
 ): Deposit =&gt; {}

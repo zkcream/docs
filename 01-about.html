@@ -168,18 +168,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#about" id="about">About</a></h1>
-<p><strong><a href="https://github.com/couger-inc/cream">C.R.E.A.M</a></strong> stands for <strong>Confidential Reliable Ethereum Anonymous Mixer</strong>. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and situations that require voting.</p>
-<p>The protocol consists of a smart contract and a zero-knowledge component. C.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.</p>
-<h2><a class="header" href="#system-designning" id="system-designning">System designning</a></h2>
-<p>C.R.E.A.M aims to be simple in design, with the basic functions being &quot;deposit&quot; which means reception and &quot;drawer&quot; which means voting. </p>
-<p>To ensure the secrecy of the vote, the voter generates a random value on their device when they make a deposit. Anyone who has a knowledge of this random value can withdraw it, making the source of the token (i.e. the address where the deposit was made) secret.</p>
-<h3><a class="header" href="#basic-feature" id="basic-feature">Basic feature</a></h3>
+<p><strong><a href="https://github.com/couger-inc/cream">C.R.E.A.M</a></strong> stands for <strong>Confidential Reliable Ethereum Anonymous Mixer</strong>. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and other situations that require voting.</p>
+<p>The protocol consists of a smart contract and a zero-knowledge component. The C.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.</p>
+<h2><a class="header" href="#system-design" id="system-design">System design</a></h2>
+<p>C.R.E.A.M aims to be simple in design, with the basic functions being &quot;deposit&quot; which means reception of the token used in the vote, and &quot;drawer&quot; which means casting the vote. </p>
+<p>To ensure the secrecy of the vote, the voter generates a random value on their device when they make a deposit. Anyone who knows this random value can withdraw it, making the source of the token (i.e. the address where the deposit was made) secret.</p>
+<h3><a class="header" href="#basic-features" id="basic-features">Basic features</a></h3>
 <p>Here's what you'll need to do to set it up in a nutshell:</p>
 <ol>
-<li>Set required deposit amount.</li>
-<li>Set recipients(candidates) ethereum address.</li>
+<li>Set the required deposit amount.</li>
+<li>Set the recipients' (candidates') ethereum addresses.</li>
 </ol>
-<p>All other election-specific parameters are automatically passed to the constructor at contract deployment time. You can check the configuration in the source code <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">here</a>.</p>
+<p>All other election-specific parameters are automatically passed to the constructor at contract deployment time. You can check out the configuration in the source code <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">here</a>.</p>
 
                     </main>
 

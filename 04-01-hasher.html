@@ -168,16 +168,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#hasher-circuit" id="hasher-circuit">Hasher circuit</a></h1>
-<p>Hasher circuit computes the Pedersen hash value of given inputs.</p>
+<p>The hasher circuit computes the Pedersen hash value of the given inputs.</p>
 <h2><a class="header" href="#inputs" id="inputs">Inputs</a></h2>
 <p>Both <code>nullifier</code> and <code>secret</code> values are generated when a user deposits a token into a voting contract.</p>
-<table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
+<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>nullifier</code></td><td>Public</td><td>A random <code>𝑘</code> value such that <code>𝑘 ∈ 𝔹248</code>.</td></tr>
-<tr><td><code>secret</code></td><td>Public</td><td>A random <code>𝑟</code> value generated <code>𝑟 ∈ 𝔹248</code>.</td></tr>
+<tr><td><code>secret</code></td><td>Public</td><td>A random <code>𝑟</code> value generated such that <code>𝑟 ∈ 𝔹248</code>.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#outpus" id="outpus">Outpus</a></h2>
-<p>The outputs of Hasher circuit are computed outputs of hash function <code>𝘏1</code> such that <code>𝘏1:𝔹 → ℤp</code>. </p>
-<p>Let <code>𝘏1</code> is Pedersen hash function which is imported frbbom <code>circomlib</code> library <a href="https://github.com/iden3/circomlib/blob/master/circuits/pedersen.circom">here</a>.</p>
+<h2><a class="header" href="#outputs" id="outputs">Outputs</a></h2>
+<p>The outputs of the Hasher circuit are computed outputs of hash function <code>𝘏1</code> such that <code>𝘏1:𝔹 → ℤp</code>. </p>
+<p>Let <code>𝘏1</code> be the Pedersen hash function which is imported from <code>circomlib</code> library <a href="https://github.com/iden3/circomlib/blob/master/circuits/pedersen.circom">here</a>.</p>
 <table><thead><tr><th>Pesudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>commitment</code></td><td>Public</td><td>A value <code>𝐶</code> such that <code>𝐶 = 𝘏1(𝑘∥𝑟)</code>.</td></tr>
 <tr><td><code>nullifierHash</code></td><td>Public</td><td>A value <code>ℎ</code> output of <code>ℎ = 𝘏1(𝑘)</code>.</td></tr>
