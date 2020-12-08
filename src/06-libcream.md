@@ -10,7 +10,7 @@ A big integer type compatible with the `cream-merkle-tree` [library](https://git
 
 **`PedersenHash`**
 
-Encupslates an outputs of `pedersenHash()` function.
+Encapsulates the outputs of the `pedersenHash()` function.
 
 ```typescript
 interface PedersenHash {
@@ -37,7 +37,7 @@ interface Deposit {
 
 **`pedersenHash`**
 
-Function to hash the given value and return a value of type along the `PedersenHash` interface.
+Function to hash the given value and return a value of the type of the `PedersenHash` interface.
 
 ```typescript
 const pedersenHash (
@@ -47,7 +47,7 @@ const pedersenHash (
 
 **`createDeposit`**
 
-Function to return a value of type along the `Deposit` interface from given 2 values, nullifier and secret.
+Function to return a value of the type of the `Deposit` interface given 2 values, nullifier and secret.
 
 ```typescript
 const createDeposit (
@@ -57,7 +57,7 @@ const createDeposit (
 ```
 
 **`createMessage`**
-Function to return a value of type along the `Message` interface and `PubKey`.
+Function to return a value of the type of the `Message` interface and `PubKey`.
 
 ```typescript
 const createMessage(
@@ -74,7 +74,7 @@ const createMessage(
 
 **`generateDeposit`**
 
-Generates a type along the Deposit interface from a given string.
+Generates a type of the Deposit interface from a given string.
 
 ```typescript
 const generateDeposit (
