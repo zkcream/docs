@@ -11,7 +11,7 @@ This page is basically ported from [README.md](https://github.com/couger-inc/cre
 ## Setup
 
 ### Config file
-Check out [config/test.yml](https://github.com/couger-inc/cream/blob/master/config/test.yml) file how to configure settings:
+Check out the [config/test.yml](https://github.com/couger-inc/cream/blob/master/config/test.yml) file for how to configure the settings:
 
 ```yml
 cream:
@@ -28,7 +28,7 @@ cream:
 ### Circuit
 Make sure you set the same value of merkleTrees depth on both [config/test.yml](https://github.com/couger-inc/cream/blob/master/config/test.yml) and [circuits/circom.circom](https://github.com/couger-inc/cream/blob/master/circuits/circom/vote.circom).
 
-After finished setting, you can run:
+After you finish setting the configuration, you can run:
 
 ```bash
 $ npm run bootstrap && \
@@ -44,7 +44,7 @@ $ npm run migrate
 $ npm run test
 ```
 
-If you get an error after `npm run test` (probably on node version `<=10.x`), such as `Error: Cannot find module 'worker_threads'`, please run following command.
+If you get an error after `npm run test` (probably on node version `<=10.x`), such as `Error: Cannot find module 'worker_threads'`, please run the following command.
 
 ```bash
 $ export NODE_OPTIONS=--experimental-worker

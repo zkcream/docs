@@ -1,10 +1,10 @@
 # Contract API
 
-You can always get the latest version of the Cream contract source code [here](https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol).
+You can always get the latest version of the C.R.E.A.M. contract source code [here](https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol).
 
 ## Constructor
 
-When you deploy a contract, you need to pass the following elements as arguments.
+When you deploy the contract, you need to pass the following elements as arguments.
 
 ```solidity
 constructor(
@@ -20,15 +20,15 @@ constructor(
 
 | Argument            | Description                                                                                                                                                                                                                                              |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `_verifier`         | `Verifier` constract address. This contract can update later with `updateVerifer(address)` method.                                                                                                                                                       |
+| `_verifier`         | `Verifier` contract address. This contract can be updated later with the `updateVerifer(address)` method.                                                                                                                                                       |
 | `_signUpToken`      | `SignUpToken` contract address of the token to be used for voting.                                                                                                                                                                                       |
-| `_denomination`     | The total amount of money needed for the `deposit()` function call.                                                                                                                                                                                      |
-| `_merkleTreeHeight` | Specify the size of the markle tree for managing the history of deposits. The size of the tree is `2**N`.                                                                                                                                                |
-| `_recipients`       | An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method `setRecipients()` on the occasion of the constructor call, and they shall not be able to be updated after the contract is deployed. |
+| `_denomination`     | The total amount of tokens needed for the `deposit()` function call.                                                                                                                                                                                      |
+| `_merkleTreeHeight` | Specify the size of the merkle tree for managing the history of deposits. The size of the tree is `2**N`.                                                                                                                                                |
+| `_recipients`       | An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method `setRecipients()` when the contract is deployed, and cannot be changed after. |
 
 ## Deposit
 
-The call to the deposit function is a very simple process of passing locally generated value, in this case `_commitment`, but you should not forget to send the value of `_denomination` and have a token from the `_signUpToken` token contract.
+The call to the deposit function is a very simple process of passing a locally generated value, in this case `_commitment`, but you should not forget to send the value of `_denomination` and have a token from the `_signUpToken` token contract.
 
 ```solidity
 function deposit (
@@ -77,10 +77,10 @@ function withdraw (
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | `_proof` | A zk-SNARK proof.|
 | `_root`| The value of the root hash of the Merkle Tree.|
-| `_nullifierHash` | The value of `X` of `BabyJubJub` from the return value of `nullifier` = `𝑘` passed to `pedersenHash()`.|
-| `_recipient` | Candidate's Ethereu address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted. |
+| `_nullifierHash` | The value of `X` of `BabyJubJub` (see [here](https://eips.ethereum.org/EIPS/eip-2494)) from the return value of `nullifier` = `𝑘` passed to `pedersenHash()`.|
+| `_recipient` | Candidate's Ethereum address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted. |
 | `_relayer` | Relayer address.|
-| `_fee` | Fees for the use of relayers.|
+| `_fee` | Relayer fee.|
 
 ### Usage
 
