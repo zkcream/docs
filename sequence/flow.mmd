@@ -1,0 +1,71 @@
+sequenceDiagram
+    participant Contract Owner
+    participant MACIFactory
+    participant MACI
+    participant CREAMFactory
+    participant CREAM
+    participant Recipients
+    participant Voter
+    participant Shadow Voter
+    participant Coordinator
+
+    Contract Owner ->> MACIFactory: deploy MACI factory
+    MACIFactory -->> Contract Owner: MACIFactory instance address
+    Contract Owner ->> CREAMFactory: deploy CREAM factory
+    CREAMFactory -->> Contract Owner: CREAMFactory instance address
+    Contract Owner ->> MACIFactory: transfer ownership to CREAMFactory (call transterOwnership())
+    opt MACI parameters
+      Contract Owner ->> CREAMFactory: set MACI parameters
+    end
+    Coordinator -->> Contract Owner: provide public key
+
+    loop create election
+      Contract Owner ->> CREAMFactory: (call createCream())
+      CREAMFactory ->> CREAM: deploy new CREAM instance
+      # CREAM ->> Recipients: (set recipients[])
+      CREAM ->> MACIFactory: (call deployMACI())
+      MACIFactory ->> MACI: deploy new MACI instance
+      MACI -->> CREAMFactory: MACI instance address
+      CREAMFactory ->> CREAM: (call setMaci())
+      CREAM -->> CREAMFactory: CREAM instance address
+
+      loop TODO sign up authentication
+        Contract Owner ->> CREAM: transfer signUpToken (call safeTransferFrom())
+        CREAM -->> Voter: signUpToken
+      end
+
+      loop mixer round
+        Voter -->> Voter: generate nullifier and secret (commitment)
+        Voter ->> CREAM: deposit signUpToken (call deposit())
+        # Shadow Voter ->> CREAM: select recipient with proof of deposit (call withdraw())
+        Voter -->> Shadow Voter: Switch wallet account
+        Shadow Voter ->> CREAM: signUp with proof of deposit (call verifyProof())
+        CREAM -->> MACI: verified voter
+        MACI -->> Shadow Voter: transfer MACI's signUpToken
+      end
+      loop maci round
+        Shadow Voter ->> MACI: sign up (call signUp())
+        Shadow Voter -->> Shadow Voter: Shadow Voter creates encrypted message(s)
+        alt Single message submission
+          Shadow Voter ->> MACI: vote ( call publishMessage() )
+        else Batch submission
+          Shadow Voter ->> CREAM: vote ( call submitMessageBatch() )
+          CREAM ->> MACI: call publishMessage()
+        end
+      end
+
+      Note over CREAM, MACI: voting deadline
+
+      Coordinator ->> MACI: process messages (call batchProcessMessage())
+      Note left of Coordinator: coordinator tallies the votes and generates proofs
+      Coordinator ->> MACI: prove the correctness of vote tally ( call proveVoteTallyBatch() )
+      Coordinator ->> MACI: tally votes
+      Note left of Coordinator: coordinator uploads the tally to IPFS
+      Coordinator ->> CREAM: call publishTallyHash()
+      # TODO some verification from contract owner?
+      loop token withdrawal
+        # TODO batch TX? Who should call this method?
+        Coordinator ->> CREAM: (call withdraw())
+        CREAM ->> Recipients: transfer signUpToken
+      end
+    end
