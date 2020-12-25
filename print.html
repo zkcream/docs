@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="01-about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="02-quick_start.html"><strong aria-hidden="true">2.</strong> Quick start</a></li><li class="chapter-item expanded "><a href="03-usage.html"><strong aria-hidden="true">3.</strong> Usage</a></li><li class="chapter-item expanded "><a href="04-circuits.html"><strong aria-hidden="true">4.</strong> Circuits</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="04-01-hasher.html"><strong aria-hidden="true">4.1.</strong> Hasher</a></li><li class="chapter-item expanded "><a href="04-02-merkleTree.html"><strong aria-hidden="true">4.2.</strong> MerkleTree</a></li><li class="chapter-item expanded "><a href="04-03-vote.html"><strong aria-hidden="true">4.3.</strong> Vote</a></li><li class="chapter-item expanded "><a href="04-04-batchVote.html"><strong aria-hidden="true">4.4.</strong> BatchVote</a></li></ol></li><li class="chapter-item expanded "><a href="05-contract_api.html"><strong aria-hidden="true">5.</strong> Contract API</a></li><li class="chapter-item expanded "><a href="06-libcream.html"><strong aria-hidden="true">6.</strong> libcream</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01-about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="02-quick_start.html"><strong aria-hidden="true">2.</strong> Quick start</a></li><li class="chapter-item expanded "><a href="03-usage.html"><strong aria-hidden="true">3.</strong> Usage</a></li><li class="chapter-item expanded "><a href="04-circuits.html"><strong aria-hidden="true">4.</strong> Circuits</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="04-01-hasher.html"><strong aria-hidden="true">4.1.</strong> Hasher</a></li><li class="chapter-item expanded "><a href="04-02-merkleTree.html"><strong aria-hidden="true">4.2.</strong> MerkleTree</a></li><li class="chapter-item expanded "><a href="04-03-vote.html"><strong aria-hidden="true">4.3.</strong> Vote</a></li></ol></li><li class="chapter-item expanded "><a href="05-contract_api.html"><strong aria-hidden="true">5.</strong> Contract API</a></li><li class="chapter-item expanded "><a href="06-libcream.html"><strong aria-hidden="true">6.</strong> libcream</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -248,7 +248,6 @@ $ npm run test
 <li><a href="04-01-hasher.html">Hasher</a></li>
 <li><a href="04-02-merkleTree.html">MerkleTree</a></li>
 <li><a href="04-03-vote.html">Vote</a></li>
-<li><a href="04-04-batchVote.html">BatchVote</a></li>
 </ol>
 <h1><a class="header" href="#hasher-circuit" id="hasher-circuit">Hasher circuit</a></h1>
 <p>The hasher circuit computes the Pedersen hash value of the given inputs.</p>
@@ -293,23 +292,6 @@ $ npm run test
 <h2><a class="header" href="#outputs-2" id="outputs-2">Outputs</a></h2>
 <table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>new_root</code></td><td>Public</td><td>An updated merkle root of the tree.</td></tr>
-</tbody></table>
-<h1><a class="header" href="#batchvote" id="batchvote">BatchVote</a></h1>
-<h2><a class="header" href="#inputs-3" id="inputs-3">Inputs</a></h2>
-<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>root[batch_size]</code></td><td>Public</td><td>A merkle root of the tree.</td></tr>
-<tr><td><code>nullifierHash[batch_size]</code></td><td>Public</td><td>A value ℎ output of <code>ℎ =𝘏1(𝑘)</code></td></tr>
-<tr><td><code>nullifier[batch_size]</code></td><td>Private</td><td>A private known <code>𝑘</code> value at the time of deposit.</td></tr>
-<tr><td><code>secret[batch_size]</code></td><td>Private</td><td>A private known <code>𝑟</code> value at the time of deposit.</td></tr>
-<tr><td><code>path_elements[batch_size][levels]</code></td><td>Private</td><td>Private path elements to prove the existance of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
-<tr><td><code>path_index[batch_size][levels]</code></td><td>Private</td><td>A private path index <code>𝜄</code> from merkle tree at the time of deposit.</td></tr>
-<tr><td><code>recipient[batch_size]</code></td><td>Public</td><td>A recipient ethereum address.</td></tr>
-<tr><td><code>relayer[batch_size]</code></td><td>Public</td><td>A relayer ethereum address. (optional)</td></tr>
-<tr><td><code>fee[batch_size]</code></td><td>Public</td><td>A relayer fee. (optional)</td></tr>
-</tbody></table>
-<h2><a class="header" href="#outputs-3" id="outputs-3">Outputs</a></h2>
-<table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>new_root</code></td><td>Public</td><td>An updated merkle root of the tree after the batch transaction.</td></tr>
 </tbody></table>
 <h1><a class="header" href="#contract-api" id="contract-api">Contract API</a></h1>
 <p>You can always get the latest version of the C.R.E.A.M. contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
