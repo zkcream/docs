@@ -7,6 +7,5 @@
   - [Hasher](./04-01-hasher.md)
   - [MerkleTree](./04-02-merkleTree.md)
   - [Vote](./04-03-vote.md)
-  - [BatchVote](./04-04-batchVote.md)
 - [Contract API](./05-contract_api.md)
 - [libcream](./06-libcream.md)

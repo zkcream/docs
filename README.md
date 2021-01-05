@@ -6,8 +6,18 @@
 
 This documentation is written in [mdbook](https://github.com/rust-lang/mdBook) format.
 
+### Requirement
+
+mdBook version has to be version `0.4.5` or later due to cross site scripting vulnerability. See [official report](https://blog.rust-lang.org/2021/01/04/mdbook-security-advisory.html) from rust website.
+
 ```bash
 cargo install mdbook
+```
+
+If you already installed mdBook version `<= 0.4.4`, you need to upgrate to version 0.4.5 or later with following command.
+
+```bash
+cargo install mdbook --version 0.4.5 --force
 ```
 
 ## Build
