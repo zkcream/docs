@@ -205,10 +205,13 @@
 <h3><a class="header" href="#circuit" id="circuit">Circuit</a></h3>
 <p>Make sure you set the same value of merkleTrees depth on both <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">config/test.yml</a> and <a href="https://github.com/couger-inc/cream/blob/master/circuits/circom/vote.circom">circuits/circom.circom</a>.</p>
 <p>After you finish setting the configuration, you can run:</p>
-<pre><code class="language-bash">$ npm run bootstrap &amp;&amp; \
+<pre><code class="language-bash">
+$ npm run bootstrap &amp;&amp; \
 $ npm run build
 $ ganache-cli // or cd contracts &amp;&amp; npm run ganache
-$ npm run migrate
+
+# In up another terminal
+$ cd contracts &amp;&amp; npm run migrate
 </code></pre>
 <h2><a class="header" href="#test" id="test">Test</a></h2>
 <pre><code class="language-bash"># after finished setting:
