@@ -31,10 +31,13 @@ Make sure you set the same value of merkleTrees depth on both [config/test.yml](
 After you finish setting the configuration, you can run:
 
 ```bash
+
 $ npm run bootstrap && \
 $ npm run build
 $ ganache-cli // or cd contracts && npm run ganache
-$ npm run migrate
+
+# In up another terminal
+$ cd contracts && npm run migrate
 ```
 
 ## Test
