@@ -39,12 +39,9 @@ sequenceDiagram
         Voter ->> CREAM: deposit signUpToken (call deposit())
         # Shadow Voter ->> CREAM: select recipient with proof of deposit (call withdraw())
         Voter -->> Shadow Voter: Switch wallet account
-        Shadow Voter ->> CREAM: signUp with proof of deposit (call verifyProof())
-        CREAM -->> MACI: verified voter
-        MACI -->> Shadow Voter: transfer MACI's signUpToken
       end
       loop maci round
-        Shadow Voter ->> MACI: sign up (call signUp())
+        Shadow Voter ->> MACI: sign up (call signUpMaci())
         Shadow Voter -->> Shadow Voter: Shadow Voter creates encrypted message(s)
         alt Single message submission
           Shadow Voter ->> MACI: vote ( call publishMessage() )
@@ -62,7 +59,7 @@ sequenceDiagram
       Coordinator ->> MACI: tally votes
       Note left of Coordinator: coordinator uploads the tally to IPFS
       Coordinator ->> CREAM: call publishTallyHash()
-      # TODO some verification from contract owner?
+      Contract Owner ->> CREAM: approve tally result (call aprooveTally())
       loop token withdrawal
         # TODO batch TX? Who should call this method?
         Coordinator ->> CREAM: (call withdraw())
