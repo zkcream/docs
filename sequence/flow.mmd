@@ -6,7 +6,7 @@ sequenceDiagram
     participant CREAM
     participant Recipients
     participant Voter
-    participant Shadow Voter
+    participant Voter'
     participant Coordinator
 
     Contract Owner ->> MACIFactory: deploy MACI factory
@@ -29,24 +29,25 @@ sequenceDiagram
       CREAMFactory ->> CREAM: (call setMaci())
       CREAM -->> CREAMFactory: CREAM instance address
 
-      loop TODO sign up authentication
-        Contract Owner ->> CREAM: transfer signUpToken (call safeTransferFrom())
-        CREAM -->> Voter: signUpToken
+      loop *TODO* sign up authentication
+        Contract Owner ->> CREAM: transfer VotingToken (call safeTransferFrom())
+        CREAM -->> Voter: VotingToken
       end
 
       loop mixer round
         Voter -->> Voter: generate nullifier and secret (commitment)
-        Voter ->> CREAM: deposit signUpToken (call deposit())
-        # Shadow Voter ->> CREAM: select recipient with proof of deposit (call withdraw())
-        Voter -->> Shadow Voter: Switch wallet account
+        Voter ->> CREAM: deposit VotingToken (call deposit())
+        Voter -->> Voter': Switch wallet account
       end
       loop maci round
-        Shadow Voter ->> MACI: sign up (call signUpMaci())
-        Shadow Voter -->> Shadow Voter: Shadow Voter creates encrypted message(s)
+        Voter' ->> CREAM: sign up (call signUpMaci())
+        CREAM -->> MACI: (call signUp())
+        CREAM -->> Voter': SignUpToken
+        Voter' -->> Voter': Voter' creates encrypted message(s)
         alt Single message submission
-          Shadow Voter ->> MACI: vote ( call publishMessage() )
+          Voter' ->> MACI: vote ( call publishMessage() )
         else Batch submission
-          Shadow Voter ->> CREAM: vote ( call submitMessageBatch() )
+          Voter' ->> CREAM: vote ( call submitMessageBatch() )
           CREAM ->> MACI: call publishMessage()
         end
       end
@@ -61,8 +62,7 @@ sequenceDiagram
       Coordinator ->> CREAM: call publishTallyHash()
       Contract Owner ->> CREAM: approve tally result (call aprooveTally())
       loop token withdrawal
-        # TODO batch TX? Who should call this method?
         Coordinator ->> CREAM: (call withdraw())
-        CREAM ->> Recipients: transfer signUpToken
+        CREAM ->> Recipients: transfer VotingToken
       end
     end
