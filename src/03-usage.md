@@ -6,7 +6,7 @@ Let's take a simple vote as an example.
 
 ### Configurations
 
-The following are the minimum settings needed to deploy the contract and use C.R.E.A.M.
+The following are the minimum settings needed to deploy the contract and use zkC.R.E.A.M.
 
 ```yaml
 cream:
