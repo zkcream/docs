@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>C.R.E.A.M docs</title>
+        <title>zkC.R.E.A.M docs</title>
         
         <meta name="robots" content="noindex" />
         
@@ -129,7 +129,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">C.R.E.A.M docs</h1>
+                    <h1 class="menu-title">zkC.R.E.A.M docs</h1>
 
                     <div class="right-buttons">
                         
@@ -170,10 +170,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#about" id="about">About</a></h1>
-<p><strong><a href="https://github.com/couger-inc/cream">C.R.E.A.M</a></strong> stands for <strong>Confidential Reliable Ethereum Anonymous Mixer</strong>. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and other situations that require voting.</p>
-<p>The protocol consists of a smart contract and a zero-knowledge component. The C.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.</p>
+<p><strong><a href="https://github.com/couger-inc/cream">zkC.R.E.A.M</a></strong> stands for <strong>Confidential Reliable Ethereum Anonymous Mixer</strong>. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and other situations that require voting.</p>
+<p>The protocol consists of a smart contract and a zero-knowledge component. The zkC.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.</p>
 <h2><a class="header" href="#system-design" id="system-design">System design</a></h2>
-<p>C.R.E.A.M aims to be simple in design, with the basic functions being &quot;deposit&quot; which means reception of the token used in the vote, and &quot;drawer&quot; which means casting the vote. </p>
+<p>zkC.R.E.A.M aims to be simple in design, with the basic functions being &quot;deposit&quot; which means reception of the token used in the vote, and &quot;drawer&quot; which means casting the vote. </p>
 <p>To ensure the secrecy of the vote, the voter generates a random value on their device when they make a deposit. Anyone who knows this random value can withdraw it, making the source of the token (i.e. the address where the deposit was made) secret.</p>
 <h3><a class="header" href="#basic-features" id="basic-features">Basic features</a></h3>
 <p>Here's what you'll need to do to set it up in a nutshell:</p>
@@ -224,7 +224,7 @@ $ npm run test
 <h2><a class="header" href="#simple-anonymous-voting" id="simple-anonymous-voting">Simple anonymous voting</a></h2>
 <p>Let's take a simple vote as an example.</p>
 <h3><a class="header" href="#configurations" id="configurations">Configurations</a></h3>
-<p>The following are the minimum settings needed to deploy the contract and use C.R.E.A.M.</p>
+<p>The following are the minimum settings needed to deploy the contract and use zkC.R.E.A.M.</p>
 <pre><code class="language-yaml">cream:
   merkleTrees: 4
   denomination: 1000000000000000000
@@ -246,7 +246,7 @@ $ npm run test
 <h3><a class="header" href="#withdraw" id="withdraw">Withdraw</a></h3>
 <p>The implementation of withdrawal is described in detail in the <a href="./05-contract_api.html#withdraw">#Withdraw</a> section of the Contract API.</p>
 <h1><a class="header" href="#circuits" id="circuits">Circuits</a></h1>
-<p>C.R.E.A.M. uses four different circuits, and the detailed APIs of each circuit are described in the links below:</p>
+<p>zkC.R.E.A.M. uses four different circuits, and the detailed APIs of each circuit are described in the links below:</p>
 <ol>
 <li><a href="04-01-hasher.html">Hasher</a></li>
 <li><a href="04-02-merkleTree.html">MerkleTree</a></li>
@@ -297,7 +297,7 @@ $ npm run test
 <tr><td><code>new_root</code></td><td>Public</td><td>An updated merkle root of the tree.</td></tr>
 </tbody></table>
 <h1><a class="header" href="#contract-api" id="contract-api">Contract API</a></h1>
-<p>You can always get the latest version of the C.R.E.A.M. contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
+<p>You can always get the latest version of the zkC.R.E.A.M. contract source code <a href="https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol">here</a>.</p>
 <h2><a class="header" href="#constructor" id="constructor">Constructor</a></h2>
 <p>When you deploy the contract, you need to pass the following elements as arguments.</p>
 <pre><code class="language-solidity">constructor(
