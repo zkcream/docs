@@ -1,4 +1,4 @@
-# C.R.E.A.M
+# zkC.R.E.A.M
 
 - [About](./01-about.md)
 - [Quick start](./02-quick_start.md)

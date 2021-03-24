@@ -1,6 +1,6 @@
 # Contract API
 
-You can always get the latest version of the C.R.E.A.M. contract source code [here](https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol).
+You can always get the latest version of the zkC.R.E.A.M. contract source code [here](https://github.com/couger-inc/cream/blob/master/contracts/contracts/Cream.sol).
 
 ## Constructor
 
