@@ -2,8 +2,12 @@ sequenceDiagram
     participant Contract Owner
     participant MACIFactory
     participant MACI
+    participant SignUpGateKeeper
+    participant SignUpToken
+    participant ConstantinitialVoiceCreditProxy
     participant CREAMFactory
     participant CREAM
+    participant VotingToken
     participant Recipients
     participant Voter
     participant Voter'
@@ -20,14 +24,18 @@ sequenceDiagram
     Coordinator -->> Contract Owner: provide public key
 
     loop create election
+      Contract Owner ->> VotingToken: deploy VotingToken
+      Contract Owner ->> SignUpToken: deploy SignUpToken
+      Contract Owner ->> SignUpGateKeeper: deploy SignUpGateKeeper contract
+      Contract Owner ->> ConstantinitialVoiceCreditProxy: deploy ConstantinitialVoiceCreditProxy contract
       Contract Owner ->> CREAMFactory: (call createCream())
       CREAMFactory ->> CREAM: deploy new CREAM instance
-      # CREAM ->> Recipients: (set recipients[])
       CREAM ->> MACIFactory: (call deployMACI())
       MACIFactory ->> MACI: deploy new MACI instance
       MACI -->> CREAMFactory: MACI instance address
-      CREAMFactory ->> CREAM: (call setMaci())
-      CREAM -->> CREAMFactory: CREAM instance address
+      CREAMFactory ->> CREAM: Link MACI and CREAM (call setMaci())
+      CREAMFactory -->> Contract Owner: CREAM instance address
+      Contract Owner -->> SignUpToken: transfer ownership to CREAM instance address
 
       loop *TODO* sign up authentication
         Contract Owner ->> CREAM: transfer VotingToken (call safeTransferFrom())
@@ -58,6 +66,7 @@ sequenceDiagram
       Note left of Coordinator: coordinator tallies the votes and generates proofs
       Coordinator ->> MACI: prove the correctness of vote tally ( call proveVoteTallyBatch() )
       Coordinator ->> MACI: tally votes
+      MACI -->> Coordinator: tally.json
       Note left of Coordinator: coordinator uploads the tally to IPFS
       Coordinator ->> CREAM: call publishTallyHash()
       Contract Owner ->> CREAM: approve tally result (call aprooveTally())
