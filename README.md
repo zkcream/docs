@@ -1,4 +1,4 @@
-# CREAM docs
+# zkCREAM docs
 
 ![github pages](https://github.com/zkcream/docs/workflows/github%20pages/badge.svg)
 
