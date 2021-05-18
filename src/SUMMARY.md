@@ -9,3 +9,4 @@
   - [Vote](./04-03-vote.md)
 - [Contract API](./05-contract_api.md)
 - [libcream](./06-libcream.md)
+- [Server API](./07-server_api.html)

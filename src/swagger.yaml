@@ -1,0 +1,232 @@
+openapi: "3.0.0"
+info:
+  description: "zkCREAM server API"
+  title: "zkCREAM server API"
+  version: "1.0.0"
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: factory
+    description: "zkCREAM Factory contract"
+  - name: zkcream
+    description: "zkCREAM contract"
+  - name: maci
+    description: "MACI contract"
+  - name: ipfs
+    description: "IPFS api hosted by zkCREAM"
+paths:
+  /factory/logs:
+    get:
+      tags:
+        - factory
+      summary: "Get zkCREAM contract's deployed event logs"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FactoryLogs"
+        '500':
+          description: Internal Server Error
+  /zkcream/{address}:
+    parameters:
+      - name: "address"
+        schema:
+          type: "string"
+        in: "path"
+        required: true
+        description: "zkCREAM contract address"
+    get:
+      tags:
+        - zkcream
+      summary: "Get zkCREAM contract details"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  agree:
+                    type: string
+                  disagree:
+                    type: string
+                  recipients:
+                    type: array
+                    description: "Candidate's ethereum address"
+                    items:
+                      type: string
+                  approved:
+                    type: bool
+                  tallyHash:
+                    type: string
+                  maciAddress:
+                    type: string
+                  signUpTokenAddress:
+                    type: string
+                  votingTokenAddress:
+                    type: string
+                  owner:
+                    type: string
+                  coordinator:
+                    type: string
+        '500':
+          description: Internal Server Error
+  /zkcream/{address}/{voter}:
+    parameters:
+      - name: "address"
+        schema:
+          type: "string"
+        in: "path"
+        required: true
+        description: "zkCREAM contract address"
+      - name: "voter"
+        schema:
+          type: "string"
+        in: "path"
+        required: true
+        description: "Any ethereum account address to see how many tokens it has"
+    get:
+      tags:
+        - zkcream
+      summary: "Get number of voting and sign up tokens voter own"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: "[# of voting token, # of sign up token]"
+                items:
+                  type: integer
+        '500':
+          description: Internal Server Error
+  /zkcream/deposit/logs/{address}:
+    parameters:
+      - name: "address"
+        schema:
+          type: "string"
+        in: "path"
+        required: true
+        description: "zkCREAM contract address"
+    get:
+      tags:
+        - zkcream
+      summary: "Get deposit event log from the zkCREAM address which is passed as a parameter"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: "[commitment, leaf index]"
+                items:
+                  type: string, integer
+  /maci/params/{address}:
+    parameters:
+      - name: "address"
+        schema:
+          type: "string"
+        in: "path"
+        required: true
+        description: "MACI contract address"
+    get:
+      tags:
+        - maci
+      summary: "GET MACI parameters"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stateTreeDepth:
+                    type: string
+                    description: "MACI's state tree depth"
+                  messageTreeDepth:
+                    type: string
+                    description: "MACI's message tree depth"
+                  voteOptionTreeDepth:
+                    type: string
+                    description: "MACI's vote option tree depth"
+                  maxVoteOptionIndex:
+                    type: string
+                    description: "MACI's max vote optoin index"
+                  signUpLogs:
+                    type: array
+                    description: "MACI's sign up event logs"
+                  publishMessageLogs:
+                    type: array
+                    description: "MACI's published message event logs"
+        '500':
+          description: Internal Server Error
+  /ipfs:
+    post:
+      tags:
+        - ipfs
+      summary: "Post data to IPFS"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    description: "IPFS hash"
+
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+  /ipfs/{hash}:
+    parameters:
+      - name: "hash"
+        schema:
+          type: "string"
+        in: "path"
+        required: true
+        description: "IPFS hash"
+    get:
+      tags:
+        - ipfs
+      summary: "Get data from IPFS"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    ContractParams:
+      parameters:
+        - name: "address"
+          schema:
+            type: "string"
+            in: "path"
+            required: true
+    FactoryLogs:
+      desctiprion: "zkCREAM deployed log"
+      type: array
+      items:
+        $ref: "#/components/schemas/DeployedLog"
+    DeployedLog:
+      items:
+        type: string

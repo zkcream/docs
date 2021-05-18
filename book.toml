@@ -3,7 +3,7 @@ authors = ["Kazuaki Ishiguro"]
 language = "en"
 multilingual = false
 src = "src"
-title = "zkC.R.E.A.M docs"
+title = "zkCREAM docs"
 
 [build]
 build-dir = "docs"
