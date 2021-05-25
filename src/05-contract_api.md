@@ -26,7 +26,7 @@ constructor(
 | `_merkleTreeHeight` | Specify the size of the merkle tree for managing the history of deposits. The size of the tree is `2**N`.                                                                                                                                                |
 | `_recipients`       | An array of ethereum addresses to be candidates for the ballot. These arrays are passed as an argument to the method `setRecipients()` when the contract is deployed, and cannot be changed after. |
 
-## Deposit
+## User: Deposit
 
 The call to the deposit function is a very simple process of passing a locally generated value, in this case `_commitment`, but you should not forget to send the value of `_denomination` and have a token from the `_signUpToken` token contract.
 
@@ -45,6 +45,8 @@ function deposit (
 ### Usage
 
 ```javascript
+import { createDepost, toHex } from 'libcream'
+
 const instance = await Cream.deployed()
 const tokenContract = await SignUpToken.deployed()
 
@@ -58,16 +60,14 @@ const tx = await instance.deposit(toHex(deposit.commitment), { from: voter })
 truffleAssert.eventEmitted(tx, 'Deposit')
 ```
 
-## Withdraw
+## User: Sign Up MACI
 
 ```solidity
-function withdraw (
-    bytes calldata _proof,
-    bytes32 _root,
-    bytes32 _nullifierHash,
-    address payable _recipient,
-    address payable _relayer,
-    uint256 _fee
+function signUpMaci(
+  PubKey calldata pubKey,
+  uint256[8] memory _proof,
+  bytes32 _root,
+  butes32 _nullifierHash
 )
 ```
 
@@ -75,62 +75,74 @@ function withdraw (
 
 | Argument      | Description                                                                                                                                  |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `pubKey` | user public key for MACI.|
 | `_proof` | A zk-SNARK proof.|
 | `_root`| The value of the root hash of the Merkle Tree.|
 | `_nullifierHash` | The value of `X` of `BabyJubJub` (see [here](https://eips.ethereum.org/EIPS/eip-2494)) from the return value of `nullifier` = `𝑘` passed to `pedersenHash()`.|
-| `_recipient` | Candidate's Ethereum address. Passing an address other than the one specified in the constructor call will cause the transaction to be reverted. |
-| `_relayer` | Relayer address.|
-| `_fee` | Relayer fee.|
+
+## User: Publish Message
+
+This method call MACI contract directly.
+
+Please also see very usuful CLI tool [documentation](https://appliedzkp.github.io/maci/cli.html#user-publish-message) if you prefer to use command line interface. Or you can use [zkcream-cli](https://github.com/zkcream/zkcream-cli)
+
+## Coordinator: Generate proof
+
+This method call MACI contract directly.
+
+Please also see very usuful CLI tool [documentation](https://appliedzkp.github.io/maci/cli.html#coordinator-generate-proofs) if you prefer to use command line interface. Or you can use [zkcream-cli](https://github.com/zkcream/zkcream-cli)
+
+## Coordinator: Publish Tally Hash
+
+```solidity
+function publishTallyHash(
+    string calldata _tallyHash
+)
+```
+
+## Anyone: Verify tally
+
+This method call MACI contract directly.
+
+Please also see very usuful CLI tool [documentation](https://appliedzkp.github.io/maci/cli.html#anyone-verify-tally) if you prefer to use command line interface.
+
+## Coordinator: Withdraw
+
+```solidity
+function withdraw (
+    uint256 _index
+)
+```
+
+### Argument details
+
+| Argument      | Description                                                                                                                                  |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `index` | Index of recipient |
 
 ### Usage
 
 ```javascript
-// Deposit
-const deposit = createDeposit(rbigInt(31), rbigInt(31))
-tree.insert(deposit.commitment)
-await instance.deposit(toHex(deposit.commitment), { from: voter })
+// Get a published tallyHash and recipients from zkCream contract
+const hash = await zkCreamInstance.tallyHash()
+const recipients = await zkCreamInstance.getRecipients()
 
-// Update tree
-const root = tree.root
-const merkleProof = tree.getPathUpdate(0)
+const r_tally = await get('ipfs/' + hash)
+const resultsArr = r_tally.data.results.tally
 
-// Create an input
-const input = {
-  root,
-  nullifierHash: pedersenHash(deposit.nullifier.leInt2Buff(31)).babyJubX,
-  relayer: relayer,
-  recipient,
-  fee,
-  nullifier: deposit.nullifier,
-  secret: deposit.secret,
-  path_elements: merkleProof[0],
-  path_index: merkleProof[1]
+for (let i = 0; i < recipients.length; i++) {
+    const count = resultsArr[i]
+    for (let j = 0; j < count; j++) {
+        const tx = await zkCreamInstance.withdraw(i)
+        if (tx) {
+            await tx.wait()
+        }
+    }
 }
 
-let isSpent = await instance.isSpent(toHex(input.nullifierHash))
-assert.isFalse(isSpent)
-
-const {
-  proof,
-} = await genProofAndPublicSignals(
-  input,
-  'prod/vote.circom',
-  'build/vote.zkey',
-  'circuits/vote.wasm'
+// check if recipients received a token
+const r2 = await get(
+    'zkcream/' + zkCreamAddress + '/' + election.recipients[0]
 )
-
-const args = [
-  toHex(input.root),
-  toHex(input.nullifierHash),
-  toHex(input.recipient, 20),
-  toHex(input.relayer, 20),
-  toHex(input.fee)
-]
-
-const proofForSolidityInput = toSolidityInput(proof)
-
-// Create withdraw tx
-const tx = await instance.withdraw(proofForSolidityInput, ...args, { from: relayer })
-
-truffleAssert.eventEmitted(tx, 'Withdrawal')
+expect(r2.data[0]).toEqual(1)
 ```
