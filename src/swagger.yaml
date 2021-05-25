@@ -47,33 +47,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  title:
-                    type: string
-                  agree:
-                    type: string
-                  disagree:
-                    type: string
-                  recipients:
-                    type: array
-                    description: "Candidate's ethereum address"
-                    items:
-                      type: string
-                  approved:
-                    type: bool
-                  tallyHash:
-                    type: string
-                  maciAddress:
-                    type: string
-                  signUpTokenAddress:
-                    type: string
-                  votingTokenAddress:
-                    type: string
-                  owner:
-                    type: string
-                  coordinator:
-                    type: string
+                $ref: "#/components/schemas/zkCream"
+
         '500':
           description: Internal Server Error
   /zkcream/{address}/{voter}:
@@ -89,11 +64,12 @@ paths:
           type: "string"
         in: "path"
         required: true
-        description: "Any ethereum account address to see how many tokens it has"
+        description: "Any ethereum account address"
     get:
       tags:
         - zkcream
-      summary: "Get number of voting and sign up tokens voter own"
+      summary: "Get token amounts"
+      description: "Get number of voting and sign up tokens the address(voter) own"
       responses:
         '200':
           description: OK
@@ -117,7 +93,8 @@ paths:
     get:
       tags:
         - zkcream
-      summary: "Get deposit event log from the zkCREAM address which is passed as a parameter"
+      summary: "Get deposit logs"
+      description: "Get deposit event log from the zkCREAM address which is passed as a parameter"
       responses:
         '200':
           description: OK
@@ -146,26 +123,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  stateTreeDepth:
-                    type: string
-                    description: "MACI's state tree depth"
-                  messageTreeDepth:
-                    type: string
-                    description: "MACI's message tree depth"
-                  voteOptionTreeDepth:
-                    type: string
-                    description: "MACI's vote option tree depth"
-                  maxVoteOptionIndex:
-                    type: string
-                    description: "MACI's max vote optoin index"
-                  signUpLogs:
-                    type: array
-                    description: "MACI's sign up event logs"
-                  publishMessageLogs:
-                    type: array
-                    description: "MACI's published message event logs"
+                $ref: "#/components/schemas/Maci"
         '500':
           description: Internal Server Error
   /ipfs:
@@ -215,15 +173,57 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    ContractParams:
-      parameters:
-        - name: "address"
-          schema:
-            type: "string"
-            in: "path"
-            required: true
+    zkCream:
+      type: object
+      properties:
+        title:
+          type: string
+        agree:
+          type: string
+        disagree:
+          type: string
+        recipients:
+          type: array
+          description: "Candidate's ethereum address"
+          items:
+            type: string
+        approved:
+          type: bool
+        tallyHash:
+          type: string
+        maciAddress:
+          type: string
+        signUpTokenAddress:
+          type: string
+        votingTokenAddress:
+          type: string
+        owner:
+          type: string
+        coordinator:
+          type: string
+    Maci:
+      type: object
+      properties:
+        stateTreeDepth:
+          type: string
+          description: "MACI's state tree depth"
+        messageTreeDepth:
+          type: string
+          description: "MACI's message tree depth"
+        voteOptionTreeDepth:
+          type: string
+          description: "MACI's vote option tree depth"
+        maxVoteOptionIndex:
+          type: string
+          description: "MACI's max vote optoin index"
+        signUpLogs:
+          type: array
+          description: "MACI's sign up event logs"
+        publishMessageLogs:
+          type: array
+          description: "MACI's published message event logs"
     FactoryLogs:
-      desctiprion: "zkCREAM deployed log"
+      description: "zkCREAM deployed log"
       type: array
       items:
         $ref: "#/components/schemas/DeployedLog"
