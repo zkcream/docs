@@ -203,7 +203,7 @@
   zeroValue: &quot;2558267815324835836571784235309882327407732303445109280607932348234378166811&quot;
 </code></pre>
 <h3><a class="header" href="#circuit" id="circuit">Circuit</a></h3>
-<p>Make sure you set the same value of merkleTrees depth on both <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">config/test.yml</a> and <a href="https://github.com/couger-inc/cream/blob/master/circuits/circom/vote.circom">circuits/circom.circom</a>.</p>
+<p>Make sure you set the same value of merkleTrees depth on both <a href="https://github.com/couger-inc/cream/blob/master/packages/config/test.yml">config/test.yml</a> and <a href="https://github.com/couger-inc/cream/blob/master/packages/circuits/circom/vote.circom">circuits/circom.circom</a>.</p>
 <p>After you finish setting the configuration, you can run:</p>
 <pre><code class="language-bash">
 $ npm run bootstrap &amp;&amp; \
@@ -225,15 +225,32 @@ $ npm run test
 <p>Let's take a simple vote as an example.</p>
 <h3><a class="header" href="#configurations" id="configurations">Configurations</a></h3>
 <p>The following are the minimum settings needed to deploy the contract and use zkC.R.E.A.M.</p>
-<pre><code class="language-yaml">cream:
+<pre><code class="language-yml">cream:
   merkleTrees: 4
-  denomination: 1000000000000000000
   recipients: [
     &quot;0x65A5B0f4eD2170Abe0158865E04C4FF24827c529&quot;,
     &quot;0x9cc9C78eDA7c7940f968eF9D8A90653C47CD2a5e&quot;,
     &quot;0xb97796F8497bb84C63e650E9527Be587F18c09f8&quot;
   ]
   zeroValue: &quot;2558267815324835836571784235309882327407732303445109280607932348234378166811&quot;
+
+maci:
+  initialVoiceCreditBalance: 100
+  signUpDurationInSeconds: 3600 # 1 hour
+  votingDurationInSeconds: 3600 # 1 hour
+  coordinatorPrivKey: &quot;2222222222263902553431241761119057960280734584214105336279476766401963593688&quot;
+  tallyBatchsize: 4
+  messageBatchSize: 4
+  quadVoteTallyBatchSize: 4
+  voteOptionsMaxLeafIndex: 3
+
+  merkleTrees:
+    stateTreeDepth: 4
+    messageTreeDepth: 4
+    voteOptionTreeDepth: 2
+
+  chain:
+	privateKeysPath: './'
 </code></pre>
 <table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>merkleTree</code></td><td>Specify the size of the merkle tree for managing the history of deposits. The size of the tree is <code>2**N</code>.</td></tr>
@@ -289,8 +306,6 @@ $ npm run test
 <tr><td><code>path_elements[levels]</code></td><td>Private</td><td>Private path elements to prove the existence of the current leaf represented by <code>𝑂(𝜏, 𝜄)</code> at the time of deposit.</td></tr>
 <tr><td><code>path_index[levels]</code></td><td>Private</td><td>A private path index <code>𝜄</code> from merkle tree at the time of deposit.</td></tr>
 <tr><td><code>recipient</code></td><td>Public</td><td>A recipient ethereum address.</td></tr>
-<tr><td><code>relayer</code></td><td>Public</td><td>A relayer ethereum address. (optional)</td></tr>
-<tr><td><code>fee</code></td><td>Public</td><td>A relayer fee. (optional)</td></tr>
 </tbody></table>
 <h2><a class="header" href="#outputs-2" id="outputs-2">Outputs</a></h2>
 <table><thead><tr><th>Pseudocode name</th><th>zk-SNARK input type</th><th>Description</th></tr></thead><tbody>
