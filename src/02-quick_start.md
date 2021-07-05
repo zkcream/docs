@@ -26,7 +26,7 @@ cream:
 ```
 
 ### Circuit
-Make sure you set the same value of merkleTrees depth on both [config/test.yml](https://github.com/couger-inc/cream/blob/master/config/test.yml) and [circuits/circom.circom](https://github.com/couger-inc/cream/blob/master/circuits/circom/vote.circom).
+Make sure you set the same value of merkleTrees depth on both [config/test.yml](https://github.com/couger-inc/cream/blob/master/packages/config/test.yml) and [circuits/circom.circom](https://github.com/couger-inc/cream/blob/master/packages/circuits/circom/vote.circom).
 
 After you finish setting the configuration, you can run:
 
