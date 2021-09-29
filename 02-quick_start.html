@@ -172,38 +172,52 @@
 <p><a href="https://github.com/couger-inc/cream/actions"><img src="https://github.com/couger-inc/cream/workflows/cream%20contract%20test/badge.svg" alt="Actions Status" /></a></p>
 <h2><a class="header" href="#requirement" id="requirement">Requirement</a></h2>
 <ul>
-<li><code>node</code> &gt;=v11.x &lt;=v12.x</li>
+<li><code>node</code> &gt;=v11.x</li>
 </ul>
 <h2><a class="header" href="#setup" id="setup">Setup</a></h2>
 <h3><a class="header" href="#config-file" id="config-file">Config file</a></h3>
-<p>Check out the <a href="https://github.com/couger-inc/cream/blob/master/config/test.yml">config/test.yml</a> file for how to configure the settings:</p>
+<p>Check out the <a href="https://github.com/couger-inc/cream/blob/master/packages/config/test.yml">packages/config/test.yml</a> file for how to configure the settings:</p>
 <pre><code class="language-yml">cream:
   merkleTrees: 4
-  denomination: 1000000000000000000
   recipients: [
     &quot;0x65A5B0f4eD2170Abe0158865E04C4FF24827c529&quot;,
     &quot;0x9cc9C78eDA7c7940f968eF9D8A90653C47CD2a5e&quot;,
     &quot;0xb97796F8497bb84C63e650E9527Be587F18c09f8&quot;
   ]
   zeroValue: &quot;2558267815324835836571784235309882327407732303445109280607932348234378166811&quot;
+
+maci:
+  initialVoiceCreditBalance: 100
+  signUpDurationInSeconds: 3600 # 1 hour
+  votingDurationInSeconds: 3600 # 1 hour
+  coordinatorPrivKey: &quot;2222222222263902553431241761119057960280734584214105336279476766401963593688&quot;
+  tallyBatchsize: 4
+  messageBatchSize: 4
+  quadVoteTallyBatchSize: 4
+  voteOptionsMaxLeafIndex: 3
+
+  merkleTrees:
+    stateTreeDepth: 4
+    messageTreeDepth: 4
+    voteOptionTreeDepth: 2
+
+  chain:
+    privateKeysPath: './'
 </code></pre>
 <h3><a class="header" href="#circuit" id="circuit">Circuit</a></h3>
 <p>Make sure you set the same value of merkleTrees depth on both <a href="https://github.com/couger-inc/cream/blob/master/packages/config/test.yml">config/test.yml</a> and <a href="https://github.com/couger-inc/cream/blob/master/packages/circuits/circom/vote.circom">circuits/circom.circom</a>.</p>
 <p>After you finish setting the configuration, you can run:</p>
 <pre><code class="language-bash">
-$ npm run bootstrap &amp;&amp; \
-$ npm run build
-$ ganache-cli // or cd contracts &amp;&amp; npm run ganache
+$ yarn &amp;&amp; \
+$ yarn build
+$ cd packages/contracts &amp;&amp; npm run ganache
 
 # In up another terminal
-$ cd contracts &amp;&amp; npm run migrate
+$ cd packages/contracts &amp;&amp; npm run migrate
 </code></pre>
 <h2><a class="header" href="#test" id="test">Test</a></h2>
 <pre><code class="language-bash"># after finished setting:
-$ npm run test
-</code></pre>
-<p>If you get an error after <code>npm run test</code> (probably on node version <code>&lt;=10.x</code>), such as <code>Error: Cannot find module 'worker_threads'</code>, please run the following command.</p>
-<pre><code class="language-bash">$ export NODE_OPTIONS=--experimental-worker
+$ yarn test
 </code></pre>
 
                     </main>
