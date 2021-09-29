@@ -1,6 +1,6 @@
 # About
 
-**[zkC.R.E.A.M](https://github.com/couger-inc/cream)** stands for **Confidential Reliable Ethereum Anonymous Mixer**. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and other situations that require voting.
+**[zkC.R.E.A.M](https://zkcre.am)** stands for **Confidential Reliable Ethereum Anonymous Mixer**. It is a protocol being developed as part of a pilot program to develop a more robust, accessible, secure, anonymous and verifiable voting technology for elections and other situations that require voting.
 
 The protocol consists of a smart contract and a zero-knowledge component. The zkC.R.E.A.M smart contract handles the validation of voting status, permissions and proofs on-chain. The zero-knowledge component works off-chain, allowing the user to generate proofs, and if these proofs are valid, the smart contract can update the state.
 
@@ -16,5 +16,5 @@ Here's what you'll need to do to set it up in a nutshell:
 1. Set the required deposit amount.
 2. Set the recipients' (candidates') ethereum addresses.
 
-All other election-specific parameters are automatically passed to the constructor at contract deployment time. You can check out the configuration in the source code [here](https://github.com/couger-inc/cream/blob/master/config/test.yml).
+All other election-specific parameters are automatically passed to the constructor at contract deployment time. You can check out the configuration in the source code [here](https://github.com/couger-inc/cream/blob/master/packages/config/test.yml).
 
